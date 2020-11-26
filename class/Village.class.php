@@ -21,11 +21,13 @@ class Village
                 'gold' => 0,
                 'stone' => 0,
                 'weapons' => 0,
+        );
         $this->upgradeCost = array( //tablica wszystkich budynkow
             'woodcutter' => array(
-                2 => array(
-                    'wood' => 100,
-                    'iron' => 50,
+                    2 => array(
+                        'wood' => 100,
+                        'iron' => 50,
+                    ),
                 ),
             'ironMine' => array(
                     1 => array(
@@ -64,10 +66,10 @@ class Village
                      2 => array(
                          'iron' => 4000,
                          'gold' => 16000,
-                     )
-                ),
-            )
-        
+                     ),
+                )
+            );
+    } 
     private function woodGain(int $deltaTime) : float
     {
         //liczymy zysk na godzine z wzoru poziom_drwala ^ 2
