@@ -1,3 +1,41 @@
+
+Skip to content
+Pull requests
+Issues
+Marketplace
+Explore
+@que2115
+Learn Git and GitHub without any code!
+
+Using the Hello World guide, you’ll start a branch, write comments, and open a pull request.
+que2115 /
+grazadanie
+
+1
+0
+
+    0
+
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+
+    Settings
+
+grazadanie/class/Village.class.php /
+@machinacyfrowa
+machinacyfrowa Update Village.class.php
+Latest commit 2a0da3f 4 days ago
+History
+2 contributors
+@que2115
+@machinacyfrowa
+143 lines (120 sloc) 3.91 KB
 <?php
 class Village 
 {
@@ -92,6 +130,7 @@ class Village
     {
         //liczymy zysk na godzine z wzoru poziom_Złotkina ^ 2
         $gain = pow($this->buildings['goldMine'],2) * 50;
+        $perSecondGain = $gain / 3600;
         //zwracamy zysk w czasie $deltaTime
         return $perSecondGain * $deltaTime;
     }
@@ -99,6 +138,7 @@ class Village
     {
         //liczymy zysk na godzine z wzoru poziom_Kamieniarza ^ 2
         $gain = pow($this->buildings['quarry'],2) * 50;
+        $perSecondGain = $gain / 3600;
         //zwracamy zysk w czasie $deltaTime
         return $perSecondGain * $deltaTime;
     }
@@ -106,6 +146,7 @@ class Village
     {
        //liczymy zysk na godzine z wzoru poziom_Wojska ^ 2
        $gain = pow($this->buildings['barraki'],2) * 50;
+       $perSecondGain = $gain / 3600;
        //zwracamy zysk w casie $deltaTime
        return $perSecondGain * $deltaTime;
     }
@@ -128,7 +169,6 @@ class Village
 
 }
 ?>
-
 
 
 
