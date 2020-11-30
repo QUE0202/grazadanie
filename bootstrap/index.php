@@ -8,25 +8,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<?php
-    require('./class/Village.class.php');
-
-    if(!isset($_SESSION['v'])) //jeżeli nie ma w sesji naszej wioski
-    {
-        $v = new Village();
-        $_SESSION['v'] = $v;
-    }
-   else //mamyjuż wioskę w sesji - przywróć ją
-   {
-       $v = $_SESSION['v'];
-   }
-    var_dump($v);
-?>
-
-
-
-
-
     <div class="container">
         <div class="row">
             <div class="col-12">

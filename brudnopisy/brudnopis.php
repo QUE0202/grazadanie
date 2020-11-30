@@ -121,71 +121,7 @@ class Village
         $this->storage['stone'] += $this->stoneGain($deltaTime);
         $this->storage['weapons'] += $this->weaponsGain($deltaTime);
     }
-    public function showHourGain(string $resource) : string
-    {
-        switch($resource) {
-            case 'wood':
-                return $this->woodGain(3600);
-                break;
-            case 'iron':
-                return $this->ironGain(3600);
-                break;
-            case 'gold':
-                return $this->goldGain(3600);
-                break;
-            case 'stone':
-                return $this->stoneGain(3600);
-                break;
-            case 'weapons':
-                return $this->weaponsGain(3600);
-                break;
-            default:
-                echo "Nie ma takiego surowca!";
-            break;
-        }
-    }
-    public function showStorage(string $resource) : string 
-    {
-        if(isset($this->storage[$resource]))
-        {
-            return floor($this->storage[$resource]);
-        }
-        else
-        {
-            return "Nie ma takiego surowca!";
-        }
-    }
-    public function buildingLVL(string $building) : int 
-    {
-        return $this->buildings[$building];
-    }
-    public function capacity(string $resource) : int 
-    {
-        switch ($resource) {
-            case 'wood':
-                return $this->woodGain(60*60*24); //doba
-                break;
-            case 'iron':
-                return $this->ironGain(60*60*12); //12 godzin
-                break;
-            case 'iron':
-                return $this->ironGain(60*60*10); //10 godzin
-                break;
-            case 'gold':
-                return $this->goldGain(60*60*9); //9 godzin
-                break;
-            case 'stone':
-                return $this->stoneGain(60*60*16); //16 godzin
-                break;
-            case 'weapons':
-                return $this->weaponsGain(60*60*20); //20 godzin
-                break;
-            default:
-                return 0;
-                break;
-            
-        }
-    }
+
 }
 ?>
 
@@ -200,3 +136,30 @@ class Village
 
 
 
+
+
+
+
+<?php
+
+public function upgradeBuilding(string $buildingName) : bool
+    {
+        $currentLVL = $this->buildings[$buildingName];
+        $cost = $this->upgradeCost[$buildingName][$currentLVL+1];
+        foreach ($cost as $key => $value) {
+            //key - nazwa surowca
+            //value koszt surowca
+            if($value > $this->storage[$key])
+                return false;
+        }
+        foreach ($cost as $key => $value) {
+            //odejmujemy surowce na budynek
+            $this->storage[$key] -= $value;
+        }
+        //podnies lvl budynku o 1
+        $this->buildings[$buildingName] += 1; 
+        return true;
+    }
+
+
+?>
