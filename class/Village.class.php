@@ -112,14 +112,7 @@ class Village
        //zwracamy zysk w casie $deltaTime
        return $perSecondGain * $deltaTime;
     }
-
-
-
-
-
-
-
-
+    
     public function gain($deltaTime) 
     {
         $this->storage['wood'] += $this->woodGain($deltaTime);
