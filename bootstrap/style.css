@@ -1,3 +1,75 @@
 .row > div {
     border: 1px solid #ccc;
 }
+
+
+
+
+
+
+
+
+h1
+{	
+
+	color: rgb(0, 255, 242);
+	font-size: 60px;
+	opacity: 1;
+	background-image: linear-gradient(to right, rgb(164, 39, 202) , rgb(21, 176, 214));
+	transition: background-color .5s;
+	text-decoration:blink;
+	height: 70px;
+	font-family: 'Roboto Mono', serif;
+	text-align: center; 
+	animation:mryganie 3s infinite;
+
+}   
+
+h2
+{
+
+    color: rgb(0, 255, 242);
+    font-size: 20px;
+    opacity: 1;
+	background-image: linear-gradient(to right, rgb(164, 39, 202) , rgb(21, 176, 214));
+	transition: background-color .5s;
+	text-decoration:blink;
+	height: 70px;
+	font-family: 'Roboto Mono', serif;
+	text-align: center; 
+	animation:mryganie 3s infinite;
+
+}
+    
+
+h3
+{
+
+    color: lightskyblue;
+    font-size: 60px;
+    opacity: 1;
+    background-image: linear-gradient(to right, rgb(164, 39, 202) , rgb(21, 176, 214));
+    transition: background-color .5s;
+    text-decoration:blink;
+    height: 70px;
+    font-family: 'Roboto Mono', serif;
+    text-align: center; 
+     animation: mryganie 3s infinite;
+    
+}
+
+body
+{
+	background-image: linear-gradient(to right, rgb(164, 39, 202) , rgb(21, 176, 214));
+	background-color: black;
+
+}
+
+
+h2: :hover
+{
+    height: 80px;
+	background-image linearGradient: (to left, rgb(221, 30, 135) , rgb(207, 135, 52));
+	-webkit-transition: width 4s;
+	transition: width 4s;
+}
