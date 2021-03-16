@@ -3,7 +3,7 @@
         session_start();
         if(!isset($_SESSION['gm'])) // jeżeli nie ma w sesji naszej wioski
         {
-            $gm = new GameManager();
+            
             $_SESSION['gm'] = $gm;
         } 
         else //mamy już wioskę w sesji - przywróć ją
@@ -48,7 +48,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
-<body style="background-color:    rgb(70, 31, 0);">
+<body>
 
 
   <button style="border-width: 10px; border-style: double; border-color: rgb(24, 11, 0); margin-left: 50px; margin-top: 50px;" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >

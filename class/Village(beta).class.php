@@ -1,7 +1,6 @@
 <?php
 class Village 
 {
-    private $gm;
     private $buildings;
     private $storage;
     private $upgradeCost;
@@ -70,48 +69,8 @@ class Village
                      ),
                 )
             );
-    
-        $this->log('Utworzono nową wioskę', 'info');
-    }
-    public function buildingList() : array {
-        $buildingList = array();
-        foreach($this->buildings as $buildingName => $buildingLVL)
-        {
-            $building = array();
-            $building['buildingName'] = $buildingName;
-            $building['buildingLVL'] = $buildingLVL;
-            if(isset($this->upgradeCost[$buildingName][$buildingLVL+1] ))
-                $building['upgradeCost'] = $this->upgradeCost[$buildingName][$buildingLVL+1] ;
-            else 
-                $building['upgradeCost'] = array();
-            switch($buildingName) {
-                case 'studnia':
-                    $building['hourGain'] = $this->wodaGain(60*60);
-                    $building['capacity'] = $this->capacity('woda');
-                break;
-                case 'apteka':
-                    $building['hourGain'] = $this->medykamentyGain(60*60);
-                    $building['capacity'] = $this->capacity('medykamenty');
-                break;
-                case 'uranMine':
-                    $building['hourGain'] = $this->uranGain(60*60);
-                    $building['capacity'] = $this->capacity('uran');
-                break;
-                case 'stacjaPaliw':
-                    $building['hourGain'] = $this->benzynaGain(60*60);
-                    $building['capacity'] = $this->capacity('benzyna');
-                break;
-                case 'zlomowisko':
-                    $building['hourGain'] = $this->czesciGain(60*60);
-                    $building['capacity'] = $this->capacity('czesci');
-                break;
-            }
-            
-            array_push($buildingList, $building);
-        }
-        return $buildingList;
-    }
-    private function wodaGain(int $deltaTime) : float
+    } 
+    private function watherGain(int $deltaTime) : float
     {
         //liczymy zysk na godzine z wzoru poziom_drwala ^ 2
         $gain = pow($this->buildings['studnia'],2) * 100;
@@ -153,91 +112,35 @@ class Village
        //zwracamy zysk w casie $deltaTime
        return $perSecondGain * $deltaTime;
     }
+    
     public function gain($deltaTime) 
     {
-        $this->storage['woda'] += $this->wodaGain($deltaTime);
-        if($this->storage['woda'] > $this->capacity('woda'))
-            $this->storage['woda'] = $this->capacity('woda');
-
+        $this->storage['woda'] += $this->watherGain($deltaTime);
         $this->storage['medykamenty'] += $this->medykamentyGain($deltaTime);
-        if($this->storage['medykamenty'] > $this->capacity('medykamenty'))
-            $this->storage['medykamenty'] = $this->capacity('medykamenty');
-        
         $this->storage['uran'] += $this->uranGain($deltaTime);
-        if($this->storage['uran'] > $this->capacity('uran'))
-            $this->storage['uran'] = $this->capacity('uran');   
-    
         $this->storage['benzyna'] += $this->benzynaGain($deltaTime);
-        if($this->storage['benzyna'] > $this->capacity('benzyna'))
-            $this->storage['benzyna'] = $this->capacity('benzyna');
-
         $this->storage['czesci'] += $this->czesciGain($deltaTime);
-        if($this->storage['czesci'] > $this->capacity('czesci'))
-            $this->storage['czesci'] = $this->capacity('czesci');
-    
-    }
-    public function upgradeBuilding(string $buildingName) : bool
-    {
-        $currentLVL = $this->buildings[$buildingName];
-        $cost = $this->upgradeCost[$buildingName][$currentLVL+1];
-        foreach ($cost as $key => $value) {
-            //key - nazwa surowca
-            //value koszt surowca
-            if($value > $this->storage[$key])
-            {
-                $this->log("Nie udało się ulepszyć budynku - brak surowca: ".$key, "warning");
-                return false;
-            }
-        }
-        foreach ($cost as $key => $value) {
-            //odejmujemy surowce na budynek
-            $this->storage[$key] -= $value;
-        }
-        //odwołanie do scheduelra
-        $this->gm->s->add(time()+60, 'Village', 'scheduledBuildingUpgrade', $buildingName);
-        
-        return true;
-    }
-    public function scheduledBuildingUpgrade(string $buildingName)
-    {
-        //podnies lvl budynku o 1
-        $this->buildings[$buildingName] += 1; 
-        $this->log("Ulepszono budynek: ".$buildingName, "info");
-    }
-    public function checkBuildingUpgrade(string $buildingName) : bool
-    {
-        $currentLVL = $this->buildings[$buildingName];
-        if(!isset($this->upgradeCost[$buildingName][$currentLVL+1]))
-            return false;
-        $cost = $this->upgradeCost[$buildingName][$currentLVL+1];
-        foreach ($cost as $key => $value) {
-            //key - nazwa surowca
-            //value koszt surowca
-            if($value > $this->storage[$key])
-                return false;
-        }
-        return true;
     }
     public function showHourGain(string $resource) : string
     {
         switch($resource) {
             case 'woda':
-                return $this->wodaGain(3600);
-            break;
+                return $this->watherGain(3600);
+                break;
             case 'medykamenty':
                 return $this->medykamentyGain(3600);
-            break;
+                break;
             case 'uran':
                 return $this->uranGain(3600);
-            break;
+                break;
             case 'benzyna':
                 return $this->benzynaGain(3600);
-            break;
+                break;
             case 'czesci':
                 return $this->czesciGain(3600);
-            break;
+                break;
             default:
-                $this->log("Nie ma takiego surowca!", "error");
+                echo "Nie ma takiego surowca!";
             break;
         }
     }
@@ -249,8 +152,7 @@ class Village
         }
         else
         {
-            $this->log("Nie ma takiego surowca!", "error");
-            return "";
+            return "Nie ma takiego surowca!";
         }
     }
     public function buildingLVL(string $building) : int 
@@ -281,6 +183,7 @@ class Village
             default:
                 return 0;
                 break;
+            
         }
     }
     public function log(string $message, string $type)

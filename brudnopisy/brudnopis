@@ -231,7 +231,8 @@ class Village
 
 
 
-
+var_dump($v);
+            var_dump($_REQUEST);
 
 
 produkcja broni
@@ -242,19 +243,21 @@ produkcja broni
 
 
 Zrobione:
-    Surowce:
-    Drewno
-    Złoto
-    Żelazo
-    Kamień
-    Broń
+    Surowce:            
+    Drewno              Woda
+    Złoto               Uran
+    Żelazo              Medykamenty
+    Kamień              Benzyna
+    Broń                Części
 
 
     Budynki:
-    Ratusz
-    Baraki
-    Kamieniołom
-    Kowal
-    Skarbiec
-    Tartak
+    Ratusz              Bunkier
+    Baraki              Złomowisko
+    Kamieniołom         Stacja Paliw
+    Kowal               Apteka
+    Skarbiec            Kopalnia Uranu
+    Tartak              studnia
 
+
+30 Części = 1 robot
