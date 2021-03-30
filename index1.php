@@ -108,7 +108,7 @@
                 <br>
                 <?php endif; ?>
                 <br>
-                <a href="index.php?action=townHall">Ratusz</a>
+                <a href="index.php?action=townHall">Bunkier</a>
             </div>
             <div class="col-12 col-md-6">
                 <?php if(isset($mainContent)) : 
