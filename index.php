@@ -111,7 +111,7 @@
                 -->
                 <ul style="list-style-type: none; padding:0;">
                     <li>
-                        <a href="index.php?action=townHall">Ratusz</a>
+                        <a href="index.php?action=townHall">Bunkier</a>
                     </li>
                     <li>
                         <a href="index.php?action=townSquare">Plac</a>
