@@ -8,7 +8,7 @@ public function upgradeBuilding(string $buildingName) : bool
             if($value > $this->storage[$key])
                 return false;
         }
-        foreach ($cost as $key => $value) {
+          foreach ($cost as $key => $value) {
             //odejmujemy surowce na budynek
             $this->storage[$key] -= $value;
         }
