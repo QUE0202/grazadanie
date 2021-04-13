@@ -8,9 +8,9 @@ public function upgradeBuilding(string $buildingName) : bool
              if($value > $this->storage[$key])
                 return false;
         }
-          foreach ($cost as $key => $value) {
-            //odejmujemy surowce na budynek
-            $this->storage[$key] -= $value;
+         foreach ($cost as $key => $value) {
+         //odejmujemy surowce na budynek
+         $this->storage[$key] -= $value;
         }
         //podnies lvl budynku o 1
         $this->buildings[$buildingName] += 1; 
@@ -32,18 +32,18 @@ public function upgradeBuilding(string $buildingName) : bool
     }
         public function showStorage(string $resource) : string 
     {
-          if(isset($this->storage[$resource]))
+        if(isset($this->storage[$resource]))
         {
-            return floor($this->storage[$resource]);
+          return floor($this->storage[$resource]);
         }
           else
         {
-            return "Nie ma takiego surowca!";
+          return "Nie ma takiego surowca!";
         }
     }
        public function buildingLVL(string $building) : int 
     {
-         return $this->buildings[$building];
+       return $this->buildings[$building];
     }
 
 
