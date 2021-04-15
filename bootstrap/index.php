@@ -49,7 +49,34 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <body>
-
+<?php
+	//Przykładowa składnia połączenia z bazą danych dla PHP i MySQL.
+	
+	//Łączenie z bazą danych
+	
+	$hostname="twoja_nazwa_hosta";
+	$username="twoja_nazwa_użytkownika_w_bazie_danych";
+	$password="twoje_hasło_do_bazy_danych";
+	$dbname="twoja_nazwa_użytkownika_w_bazie_danych";
+	$usertable="nazwa_twojej_tabeli";
+	$yourfield = "twoje_pole";
+	
+	mysqli_connect($hostname,$username, $password) albo die ("html>script language='JavaScript'>alert('Nie można nawiązać połączenia z bazą danych! Spróbuj ponownie później.'),history.go(-1)/script>/html>");
+	mysqli_select_db($dbname);
+	
+	# Sprawdź, czy dany rekord istnieje
+	
+	$query = "SELECT * FROM $usertable";
+	
+	$result = mysqli_query($query);
+	
+	if($result){
+		while($row = mysqli_fetch_array($result)){
+			$name = $row["$yourfield"];
+			echo "Nazwa: ".$name."br/>";
+		}
+	}
+?>
 
   <button style="border-width: 10px; border-style: double; border-color: rgb(24, 11, 0); margin-left: 50px; margin-top: 50px;" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
   Gracz
