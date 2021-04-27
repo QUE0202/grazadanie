@@ -1,0 +1,13 @@
+div#loginform {
+    width: 20%;
+    position: fixed;
+    top: 40%;
+    left: 40%;
+}
+div#loginform input,
+div#loginform button{
+    width: 100%;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
