@@ -31,10 +31,10 @@ class Village
                     ),
                 ),
             'apteka' => array(
-                    1 => array(
+                    2 => array(
                         'woda' => 100,
                     ),
-                    2 => array(
+                    3 => array(
                         'woda' => 300,
                         'medykamenty' => 100,
                     )

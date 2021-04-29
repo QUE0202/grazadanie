@@ -67,16 +67,16 @@
             <div class="col-12 col-md-6">
                 <div class="row">
                     <div class="col-12 col-md-3">
-                        Drewno: <?php echo $v->showStorage("wood"); ?>
+                        Woda: <?php echo $v->showStorage("wood"); ?>
                     </div>
                     <div class="col-12 col-md-3">
-                        Żelazo: <?php echo $v->showStorage("iron"); ?>
+                        Medykamenty: <?php echo $v->showStorage("iron"); ?>
                     </div>
                     <div class="col-12 col-md-3">
-                        Zasób 3
+                        Uran
                     </div>
                     <div class="col-12 col-md-3">
-                        Zasób 4
+                        Benzyna
                     </div>
                 </div>
             </div>
@@ -88,23 +88,23 @@
             <div class="col-12 col-md-2 border-right">
                 Lista budynków<br>
                 <!--
-                Drwal, poziom <?php echo $v->buildingLVL("woodcutter"); ?> <br>
-                Zysk/h: <?php echo $v->showHourGain("wood"); ?><br>
-                <?php if($v->checkBuildingUpgrade("woodcutter")) : ?>
-                <a href="index.php?action=upgradeBuilding&building=woodcutter">
-                    <button>Rozbuduj drwala</button>
+                Drwal, poziom <?php echo $v->buildingLVL("studnia"); ?> <br>
+                Zysk/h: <?php echo $v->showHourGain("woda"); ?><br>
+                <?php if($v->checkBuildingUpgrade("studnia")) : ?>
+                <a href="index.php?action=upgradeBuilding&building=woda">
+                    <button>Rozbuduj Studniarza</button>
                 </a><br>
                 <?php else : ?>
-                    <button onclick="missingResourcesPopup()">Rozbuduj drwala</button><br>
+                    <button onclick="missingResourcesPopup()">Rozbuduj Studniarza</button><br>
                 <?php endif; ?>
-                Kopalnia żelaza, poziom <?php echo $v->buildingLVL("ironMine"); ?> <br>
-                Zysk/h: <?php echo $v->showHourGain("iron"); ?><br>
-                <?php if($v->checkBuildingUpgrade("ironMine")) : ?>
-                <a href="index.php?action=upgradeBuilding&building=ironMine">
+                Kopalnia żelaza, poziom <?php echo $v->buildingLVL("apteka"); ?> <br>
+                Zysk/h: <?php echo $v->showHourGain("medykamenty"); ?><br>
+                <?php if($v->checkBuildingUpgrade("apteka")) : ?>
+                <a href="index.php?action=upgradeBuilding&building=apteka">
                     <button>Rozbuduj kopalnie żelaza</button>
                 </a>
                 <?php else : ?>
-                    <button onclick="missingResourcesPopup()">Rozbuduj kopalnie żelaza</button>
+                    <button onclick="missingResourcesPopup()">Rozbuduj apteke</button>
                 <br>
                 <?php endif; ?>
                 <br>

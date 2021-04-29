@@ -61,21 +61,9 @@
 	$usertable="nazwa_twojej_tabeli";
 	$yourfield = "twoje_pole";
 	
-	mysqli_connect($hostname,$username, $password) albo die ("html>script language='JavaScript'>alert('Nie można nawiązać połączenia z bazą danych! Spróbuj ponownie później.'),history.go(-1)/script>/html>");
-	mysqli_select_db($dbname);
 	
-	# Sprawdź, czy dany rekord istnieje
 	
-	$query = "SELECT * FROM $usertable";
 	
-	$result = mysqli_query($query);
-	
-	if($result){
-		while($row = mysqli_fetch_array($result)){
-			$name = $row["$yourfield"];
-			echo "Nazwa: ".$name."br/>";
-		}
-	}
 ?>
 
   <button style="border-width: 10px; border-style: double; border-color: rgb(24, 11, 0); margin-left: 50px; margin-top: 50px;" type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
@@ -102,9 +90,9 @@
 </p>
 <div class="collapse" id="collapseExample5">
 <div class="card card-body">
-  <a class="dropdown-item" href="#">Drewno: <?php echo $v->showStorage("wood"); ?></a> 
-  <a class="dropdown-item" href="#">Żelazo: <?php echo $v->showStorage("iron"); ?></a>
-  <a class="dropdown-item" href="#">Żniwa: <?php echo $v->showStorage("food"); ?></a>
+  <a class="dropdown-item" href="#">Woda: <?php echo $v->showStorage("woda"); ?></a> 
+  <a class="dropdown-item" href="#">Medykamenty: <?php echo $v->showStorage("medykamenty"); ?></a>
+  <a class="dropdown-item" href="#">Mięso <?php echo $v->showStorage("food"); ?></a>
   </div>
 </div>
 <br>
@@ -115,16 +103,16 @@
 </p>
 <div class="collapse" id="collapseExample3">
 <div class="card card-body">
-  Kopalnia żelaza,<br>
-         poziom <?php echo $v->buildingLVL("ironMine"); ?> <br>
-        Zysk/h: <?php echo $v->showHourGain("iron"); ?><br>
-        <?php if($v->checkBuildingUpgrade("ironMine")) : ?>
-        <a href="index.php?action=upgradeBuilding&building=ironMine">
-            <button type="button" class="btn btn-outline-warning">Rozbuduj kopalnie żelaza</button>
+  Apteka,<br>
+         poziom <?php echo $v->buildingLVL("apteka"); ?> <br>
+        Zysk/h: <?php echo $v->showHourGain("medykamenty"); ?><br>
+        <?php if($v->checkBuildingUpgrade("apteka")) : ?>
+        <a href="index.php?action=upgradeBuilding&building=apteka">
+            <button type="button" class="btn btn-outline-warning">Rozbuduj apteke</button>
         </a>
         <?php else : ?>
           
-            <button onclick="missingResourcesPopup()" type="button" class="btn btn-outline-warning">Rozbuduj kopalnie żelaza</button>
+            <button onclick="missingResourcesPopup()" type="button" class="btn btn-outline-warning">Rozbuduj apteke</button>
         </a>
         <?php endif; ?>
         </div>
@@ -132,21 +120,21 @@
 <br>
 <div class="dropdown" role="group" aria-label="Basic example" >
     <button style="border-width: 10px; border-style: double; border-color: rgb(24, 11, 0);" class="btn btn-warning" type="button" data-toggle="collapse" data-target="#collapseExample4" aria-expanded="false" aria-controls="collapseExample4">
-    Tartak
+    Studnia
   </button>
 </p>
 <div class="collapse" id="collapseExample4">
 <div class="card card-body">
-  Drwal,<br>
-         poziom <?php echo $v->buildingLVL("woodcutter"); ?> <br>
-        Zysk/h: <?php echo $v->showHourGain("wood"); ?><br>
-        <?php if($v->checkBuildingUpgrade("woodcutter")) : ?>
-        <a href="index.php?action=upgradeBuilding&building=woodcutter">
-            <button type="button" class="btn btn-outline-warning">Rozbuduj drwala</button>
+  Studniarz,<br>
+         poziom <?php echo $v->buildingLVL("studnia"); ?> <br>
+        Zysk/h: <?php echo $v->showHourGain("woda"); ?><br>
+        <?php if($v->checkBuildingUpgrade("studnia")) : ?>
+        <a href="index.php?action=upgradeBuilding&building=studnia">
+            <button type="button" class="btn btn-outline-warning">Rozbuduj studnie</button>
         </a>
         <?php else : ?>
           
-            <button onclick="missingResourcesPopup()" type="button" class="btn btn-outline-warning">Rozbuduj drwala</button>
+            <button onclick="missingResourcesPopup()" type="button" class="btn btn-outline-warning">Rozbuduj studnie</button>
         </a>
         <?php endif; ?>
   </div>
@@ -154,20 +142,20 @@
 <br>
 <div class="dropdown" role="group" aria-label="Basic example" >
     <button style="border-width: 10px; border-style: double; border-color: rgb(24, 11, 0);" class="btn btn-warning" type="button" data-toggle="collapse" data-target="#collapseExample2" aria-expanded="false" aria-controls="collapseExample2">
-    Pole
+    Łąka
   </button>
 </p>
 <div class="collapse" id="collapseExample2">
 <div class="card card-body">
-  Rozbudowa pola,<br>
-         poziom <?php echo $v->buildingLVL("foodearth"); ?> <br>
+  Rozbudowa łąki,<br>
+         poziom <?php echo $v->buildingLVL("łąka"); ?> <br>
         Zysk/h: <?php echo $v->showHourGain("food"); ?><br>
-        <?php if($v->checkBuildingUpgrade("foodearth")) : ?>
-        <a href="index.php?action=upgradeBuilding&building=foodearth">
-            <button type="button" class="btn btn-outline-warning">Rozbudowa Pola</button>
+        <?php if($v->checkBuildingUpgrade("łąka")) : ?>
+        <a href="index.php?action=upgradeBuilding&building=łąka">
+            <button type="button" class="btn btn-outline-warning">Rozbudowa Łąki</button>
         </a>
         <?php else : ?>
-        <button onclick="missingResourcesPopup()" type="button" class="btn btn-outline-warning">Rozbudowa Pola</button>
+        <button onclick="missingResourcesPopup()" type="button" class="btn btn-outline-warning">Rozbudowa Łąki</button>
         </a>
         <?php endif; ?>
         </div>

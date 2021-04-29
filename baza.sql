@@ -44,9 +44,9 @@ CREATE TABLE `player` (
 CREATE TABLE `village` (
   `id` int(11) NOT NULL,
   `player_id` int(11) NOT NULL,
-  `townHall` int(11) NOT NULL DEFAULT 1 COMMENT 'Poziom budynku',
-  `woodcutter` int(11) NOT NULL DEFAULT 1 COMMENT 'Poziom budynku',
-  `ironMine` int(11) NOT NULL DEFAULT 0 COMMENT 'Poziom budynku',
+  `bunkier` int(11) NOT NULL DEFAULT 1 COMMENT 'Poziom budynku',
+  `studnia` int(11) NOT NULL DEFAULT 1 COMMENT 'Poziom budynku',
+  `apteka` int(11) NOT NULL DEFAULT 0 COMMENT 'Poziom budynku',
   `farm` int(11) NOT NULL DEFAULT 0 COMMENT 'Poziom budynku'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 

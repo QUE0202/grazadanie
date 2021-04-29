@@ -9,6 +9,7 @@ session_start();
 $smarty = new Smarty();
 $db = new DB();
 
+
 $smarty->setTemplateDir(__DIR__ . '/smarty/templates');
 $smarty->setCompileDir(__DIR__ . '/smarty/templates_c');
 $smarty->setCacheDir(__DIR__ . '/smarty/cache');
@@ -32,8 +33,8 @@ $gm->sync();
 
 Route::add('/', function () {
     global $smarty;
-    $smarty->assign('wood', $v->showStorage("wood"));
-    $smarty->assign('iron', $v->showStorage("iron"));
+    $smarty->assign('woda', $v->showStorage("woda"));
+    $smarty->assign('medykamenty', $v->showStorage("medykamenty"));
     $smarty->assign('food', $v->showStorage("food"));
     $smarty->assign('mainContent', "village.tpl");
     $smarty->display('index.tpl');
